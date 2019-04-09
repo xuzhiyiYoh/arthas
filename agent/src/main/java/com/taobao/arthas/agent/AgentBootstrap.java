@@ -1,5 +1,6 @@
 package com.taobao.arthas.agent;
 
+import java.arthas.Hooks;
 import java.arthas.Spy;
 import java.io.*;
 import java.lang.instrument.Instrumentation;
@@ -119,6 +120,7 @@ public class AgentBootstrap {
              */
             final ClassLoader agentLoader = getClassLoader(inst, spyJarFile, agentJarFile);
             initSpy(agentLoader);
+            Hooks.init();
 
             Thread bindingThread = new Thread() {
                 @Override

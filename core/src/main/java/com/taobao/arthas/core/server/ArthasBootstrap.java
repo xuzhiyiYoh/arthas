@@ -136,6 +136,7 @@ public class ArthasBootstrap {
         UserStatUtil.destroy();
         // clear the reference in Spy class.
         cleanUpSpyReference();
+        cleanUpHooks();
         try {
             Runtime.getRuntime().removeShutdownHook(shutdown);
         } catch (Throwable t) {
@@ -185,6 +186,21 @@ public class ArthasBootstrap {
             logger.error(null, "Spy load failed from ArthasClassLoader, which should not happen", e);
         } catch (Exception e) {
             logger.error(null, "Spy destroy failed: ", e);
+        }
+    }
+
+    /**
+     * 清除hooks的引用，避免内存泄露
+     */
+    private void cleanUpHooks() {
+        try {
+            Class<?> hooksClass = this.getClass().getClassLoader().loadClass(Constants.HOOKS_CLASSNAME);
+            Method agentDestroyMethod = hooksClass.getMethod("destroy");
+            agentDestroyMethod.invoke(null);
+        } catch (ClassNotFoundException e) {
+            logger.error(null, "Hooks load failed from ArthasClassLoader, which should not happen", e);
+        } catch (Exception e) {
+            logger.error(null, "Hooks destroy failed: ", e);
         }
     }
 }

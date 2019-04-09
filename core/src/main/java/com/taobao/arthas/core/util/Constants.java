@@ -15,6 +15,11 @@ public interface Constants {
     String SPY_CLASSNAME = "java.arthas.Spy";
 
     /**
+     * Hooks的全类名
+     */
+    String HOOKS_CLASSNAME = "java.arthas.Hooks";
+
+    /**
      * 中断提示
      */
     String Q_OR_CTRL_C_ABORT_MSG = "Press Q or Ctrl+C to abort.";

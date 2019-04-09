@@ -1,5 +1,6 @@
 package com.taobao.arthas.core.command;
 
+import com.taobao.arthas.core.advisor.ThreadPoolEnhancer;
 import com.taobao.arthas.core.command.basic1000.CatCommand;
 import com.taobao.arthas.core.command.basic1000.ClsCommand;
 import com.taobao.arthas.core.command.basic1000.HelpCommand;
@@ -29,6 +30,7 @@ import com.taobao.arthas.core.command.monitor200.JvmCommand;
 import com.taobao.arthas.core.command.monitor200.MonitorCommand;
 import com.taobao.arthas.core.command.monitor200.StackCommand;
 import com.taobao.arthas.core.command.monitor200.ThreadCommand;
+import com.taobao.arthas.core.command.monitor200.ThreadPoolCommand;
 import com.taobao.arthas.core.command.monitor200.TimeTunnelCommand;
 import com.taobao.arthas.core.command.monitor200.TraceCommand;
 import com.taobao.arthas.core.command.monitor200.WatchCommand;
@@ -89,5 +91,6 @@ public class BuiltinCommandPack implements CommandResolver {
         commands.add(Command.create(HistoryCommand.class));
         commands.add(Command.create(CatCommand.class));
         commands.add(Command.create(PwdCommand.class));
+        commands.add(Command.create(ThreadPoolCommand.class));
     }
 }
