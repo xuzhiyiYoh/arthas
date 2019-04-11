@@ -65,6 +65,11 @@ public class SearchUtils {
         return searchClass(inst, classNameMatcher, limit);
     }
 
+    public static Set<Class<?>> searchClassOnly(Instrumentation inst, Matcher<String> classNameMatcher, String code) {
+        Set<Class<?>> matchedClasses = searchClass(inst, classNameMatcher);
+        return filter(matchedClasses, code);
+    }
+
     public static Set<Class<?>> searchClassOnly(Instrumentation inst, String classPattern, boolean isRegEx, String code) {
         Set<Class<?>> matchedClasses = searchClassOnly(inst, classPattern, isRegEx);
         return filter(matchedClasses, code);
