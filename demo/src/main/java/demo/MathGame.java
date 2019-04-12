@@ -1,20 +1,12 @@
 package demo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class MathGame {
-
     private static Random random = new Random();
-
-    private static List<Long> blackList = new ArrayList<Long>();
-
-    private static Long[] whiteList = new Long[4];
-
-    private static int[] intArray = new int[5];
 
     public int illegalArgumentCount = 0;
 
@@ -46,9 +38,6 @@ public class MathGame {
             sb.deleteCharAt(sb.length() - 1);
         }
         System.out.println(sb);
-        System.out.println("blackList" + blackList.toString() + " type:" + blackList.get(0).getClass());
-        System.out.println("whiteList" + Arrays.asList(whiteList).toString());
-        System.out.println("intArray" + Arrays.asList(intArray).toString());
     }
 
     public List<Integer> primeFactors(int number) {

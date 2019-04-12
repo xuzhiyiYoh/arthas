@@ -2,6 +2,8 @@ package com.taobao.arthas.core.command.klass100;
 
 import com.alibaba.fastjson.JSONObject;
 import com.taobao.arthas.core.command.Constants;
+import com.taobao.arthas.core.shell.cli.Completion;
+import com.taobao.arthas.core.shell.cli.CompletionUtils;
 import com.taobao.arthas.core.shell.command.AnnotatedCommand;
 import com.taobao.arthas.core.shell.command.CommandProcess;
 import com.taobao.arthas.core.util.LogUtil;
@@ -93,6 +95,24 @@ public class SetStaticCommand extends AnnotatedCommand {
             process.write(affect + "\n");
             process.end();
         }
+    }
+
+    @Override
+    public void complete(Completion completion) {
+        int argumentIndex = CompletionUtils.detectArgumentIndex(completion);
+        if (argumentIndex == 1) {
+            if (!CompletionUtils.completeClassName(completion)) {
+                super.complete(completion);
+            }
+            return;
+        } else if (argumentIndex == 2) {
+            if (!CompletionUtils.completeStaticFieldName(completion)) {
+                super.complete(completion);
+            }
+            return;
+        }
+
+        super.complete(completion);
     }
 
     private void processExactMatch(CommandProcess process, RowAffect affect, Set<Class<?>> matchedClasses) {
